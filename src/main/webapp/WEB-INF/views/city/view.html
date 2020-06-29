@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> Danh sách thành phố</title>
+</head>
+<body>
+<div>
+    <h1>
+        <label>Thành Phố </label> <label th:text="${cities.getCityName()}"></label>
+    </h1>
+</div>
+<div>
+    <button th:onclick="'window.location.href=\'/'+'\''">Xem danh sách thành phố</button>
+</div>
+<div>
+    <tr>
+        <th>Tên :</th>
+        <th th:text="${cities.getCityName()}"></th>
+    </tr>
+    <br>
+
+    <tr>
+        <th>Quốc Gia :</th>
+        <th th:text="${cities.getCountry().getCountryName()}"></th>
+    </tr>
+    <br>
+    <tr>Diện tích:</tr>
+    <td th:text="${cities.getCityArea()}"></td>
+    <br>
+    <tr>Dân số:</tr>
+    <td th:text="${cities.getCityPopulation()}"></td>
+    <br>
+    <tr>GDP:</tr>
+    <td th:text="${cities.getCityGDP()}"></td>
+    <br>
+    <tr>Giới thiệu:</tr>
+    <br>
+    <td th:text="${cities.getCityDescription()}"></td>
+    <br>
+</div>
+<div>
+    <button th:onclick="'window.location.href=\'/edit/'+${cities.getId()}+'\''">Chỉnh Sửa</button>
+    <button th:onclick="'window.location.href=\'/delete/'+${cities.getId()}+'\''">Xóa</button>
+</div>
+
+</body>
+</html>

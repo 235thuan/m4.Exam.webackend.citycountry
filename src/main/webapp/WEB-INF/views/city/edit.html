@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> Danh sách thành phố</title>
+</head>
+<body>
+<div>
+    <h1>
+        Thêm thành phố
+    </h1>
+</div>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+
+<div>
+
+
+    <table border="1">
+        <form th:object="${cities}" th:action="@{/edit}" method="post">
+            <input th:type="hidden" name="id" th:field="*{id}">
+            <tr>
+                <td>Tên:</td>
+                <td><input type="text" th:field="*{cityName}"/></td>
+                <td th:if="${#fields.hasErrors('cityName')}" th:errors="*{cityName}">Name Error</td>
+            </tr>
+            <br>
+            <tr>
+                <td>Quốc gia:</td>
+                <td>
+                    <select th:field="*{country}">
+                        <option th:each="p : ${countries}" th:value="${p.id}" th:text="${p.countryName}"></option>
+                    </select>
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>Diện tích:</td>
+                <td><input type="text" th:field="*{cityArea}"/></td>
+                <td th:if="${#fields.hasErrors('cityArea')}" th:errors="*{cityArea}">Number Error</td>
+            </tr>
+            <br>
+            <tr>
+                <td>Dân số:</td>
+                <td><input type="text" th:field="*{cityPopulation}"/></td>
+                <td th:if="${#fields.hasErrors('cityPopulation')}" th:errors="*{cityPopulation}">Number Error</td>
+            </tr>
+            <br>
+            <tr>
+                <td>GDP:</td>
+                <td><input type="text" th:field="*{cityGDP}"/></td>
+                <td th:if="${#fields.hasErrors('cityGDP')}" th:errors="*{cityGDP}">Number Error</td>
+            </tr>
+            <br>
+            <tr>
+                <td>Giới thiệu</td>
+                <td><textarea th:field="*{cityDescription}"/></td>
+
+            </tr>
+            <br>
+
+
+            <input type="submit" value="Cập nhật">
+        </form>
+        <button th:onclick="'window.location.href=\'/'+'\''"> Thoát</button>
+    </table>
+
+</div>
+
+</body>
+</html>
